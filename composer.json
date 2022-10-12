@@ -1,0 +1,21 @@
+{
+    "name": "cmendoza/api_cdc",
+    "autoload": {
+        "psr-4": {
+            "Cmendoza\\ApiCdc\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "CDC"
+        }
+    ],
+    "require": {
+        "mongodb/mongodb": "^1.12",
+        "vlucas/phpdotenv": "^5.4",
+        "ctwillie/expo-server-sdk-php": "^2.0",
+        "guzzlehttp/guzzle": "^7.4",
+        "bramus/router": "~1.6",
+        "phpmailer/phpmailer": "^6.6"
+    }
+}
