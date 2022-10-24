@@ -2,8 +2,7 @@
 
 namespace Cmendoza\ApiCdc\models;
 
-use Cmendoza\ApiCdc\interfaces\iTemplate as iTemplate;
-use Cmendoza\ApiCdc\lib\DataBaseSQL;
+use Cmendoza\ApiCdc\database\DataBaseSQL;
 use PDO;
 use PDOException;
 
@@ -18,7 +17,7 @@ class Publicidad
 
     public function __construct()
     {
-        $this->db = new DataBaseSQL();
+        $this->db = new DataBaseSQL("DB_NAME");
     }
 
     public function exist(...$params)

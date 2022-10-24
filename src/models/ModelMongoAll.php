@@ -3,7 +3,7 @@
 namespace Cmendoza\ApiCdc\models;
 
 use Exception;
-use Cmendoza\ApiCdc\lib\DataBaseNoSQL;
+use Cmendoza\ApiCdc\database\DataBaseNoSQL;
 
 class ModelMongoAll
 {

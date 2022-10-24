@@ -5,7 +5,7 @@ namespace Cmendoza\ApiCdc\models;
 use Exception;
 use ExpoSDK\Expo;
 use ExpoSDK\ExpoMessage;
-use Cmendoza\ApiCdc\lib\DataBaseNoSQL;
+use Cmendoza\ApiCdc\database\DataBaseNoSQL;
 use Cmendoza\ApiCdc\controllers\TokenController as TokensConn;
 
 class ModelSendNotifications

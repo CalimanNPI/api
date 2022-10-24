@@ -13,4 +13,4 @@ ini_set("error_log", __DIR__.'\php-error.log');
 error_log("Hello, errors!");
 
 require 'vendor/autoload.php';
-require 'src/lib/routes.php';
+require 'src/routes/routes.php';
