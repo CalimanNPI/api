@@ -24,9 +24,9 @@ class LoginModel
     public function get($param)
     {
         try {
-            $stm = $this->db->connect()->prepare("SELECT TOP(1) * FROM dbo.registro WHERE clave=? AND mail=?");
+            $stm = $this->db->connect()->prepare("SELECT clave, mail, status, celular FROM dbo.registro WHERE clave=? AND mail=?");
             $stm->bindValue(1, $param['clave']);
-            $stm->bindValue(2, $param['mail']);
+            $stm->bindValue(2, $param['email']);
             $stm->execute();
             $stm->setFetchMode(PDO::FETCH_ASSOC);
             $respuesta = $stm->fetchAll();

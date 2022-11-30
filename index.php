@@ -10,7 +10,7 @@ ini_set('log_errors', TRUE); // Error/Exception file logging engine.
 
 
 ini_set("error_log", __DIR__.'\php-error.log');
-error_log("Hello, errors!");
+//error_log("Hello, errors!");
 
 require 'vendor/autoload.php';
 require 'src/routes/routes.php';

@@ -25,7 +25,6 @@ class TokenController
         $data = ['_id' => uniqid(), 'token' => $fields['token']];
         $notify = new TokenConn('tokens');
         if (!$notify->get(['token' => $fields['token']])) {
-            //error_log('no hay valor');
             $result = $notify->save($data);
             return $result;
         }

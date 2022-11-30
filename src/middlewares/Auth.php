@@ -8,13 +8,31 @@ use Cmendoza\ApiCdc\models\ModelMongoAll as JWTU;
 class Auth
 {
 
-    function __construct()
+    public function __construct()
     {
+        $array = array(
+            'nombre' => $validate->validateName($nombre),
+            'paterno' => $validate->validateName($paterno),
+            'materno' => $validate->validateName($materno),
+            'correo' => $validate->validateEmail($correo),
+            'celular' => $validate->validateTel($celular)
+        );
+
+        $error = $validate->validateAll($array);
+        
     }
 
-    public function validateAuth($param)
+    public function validateAll($array)
     {
-        $JWTU = new JWTU('jwtu');
-        return $JWTU->get(["token" => $param]);
+
+        $error = [];
+
+        foreach ($array as $key => $value) {
+            if (!$value) {
+                array_push($error, ['error' => 'Formato invalido en: ' . $key]);
+            }
+        }
+
+        return $error;
     }
 }

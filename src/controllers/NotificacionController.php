@@ -4,8 +4,6 @@ namespace Cmendoza\ApiCdc\controllers;
 
 use Cmendoza\ApiCdc\models\ModelMongoAll  as Notificaciones;
 use Cmendoza\ApiCdc\models\ModelSendNotifications as SendNotify;
-use DateTime;
-use Dotenv\Parser\Value;
 
 class NotificacionController
 {
@@ -21,8 +19,6 @@ class NotificacionController
         }));
 
         return $array;
-
-        // return  $result->getAll();
     }
 
     public static function show($id)

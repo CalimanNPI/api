@@ -83,7 +83,7 @@ class ModelMongoAll
     public function delete($param)
     {
         try {
-            $result = $this->collection->deleteOne(['_id' => $param]);
+            $result = $this->collection->deleteOne($param);
             return $result->getDeletedCount();
         } catch (Exception $e) {
             error_log($e->getMessage());

@@ -4,28 +4,38 @@
 namespace Cmendoza\ApiCdc\controllers;
 
 use Cmendoza\ApiCdc\models\ModelMongoAll as activity;
+use Cmendoza\ApiCdc\models\ModelActivity;
+use Cmendoza\ApiCdc\models\UserModel;
 
 class ActivityController
 {
-    public static function index()
+    private ModelActivity $obj;
+
+    function __construct()
     {
-        $result = new activity('publicity');
-        return  $result->getAll();
+        $this->obj = new ModelActivity();;
     }
 
-    public static function show($id)
+    public  function index()
     {
-        $result = new activity('publicity');
-        return  $result->getById($id);
+        return $this->obj->getAll();
     }
 
-    public static function store($fields)
+    public  function show($numero)
     {
-        $notify = new activity('activity');
-        $result = $notify->save($fields);
-        //error_log($result);
-        //$data = ['title' => $fields['title2'], 'body' => $fields['body2'], 'id_ex' => $id, 'isSend' => false, 'table' => 'publicity'];
-        //NotificacionController::store($data);
-        return $result;
+        return $this->obj->getActi($numero);
+    }
+
+    public function search($fields)
+    {
+        return $this->obj->search($fields['search']);
+    }
+
+    public function getProfe($fields)
+    {
+        $user = new UserModel();
+        $user->setTipo('U');
+        $user->setClave($fields['clave']);
+        return $user->getUserNom();
     }
 }

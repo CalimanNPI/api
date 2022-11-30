@@ -3,7 +3,7 @@
 namespace Cmendoza\ApiCdc\lib;
 
 
-class Jwt
+class JWT
 {
 
     public static function createJWT($param)

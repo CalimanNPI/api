@@ -29,6 +29,7 @@ class DataBaseSQL
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $pdo;
         } catch (PDOException $exception) {
+            error_log($exception->getMessage());
             exit($exception->getMessage());
         }
     }
