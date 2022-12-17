@@ -6,6 +6,7 @@ use Cmendoza\ApiCdc\controllers\TokenController as TokenConn;
 use Cmendoza\ApiCdc\controllers\SendMailController as SendMail;
 use Cmendoza\ApiCdc\controllers\ActivityController as Activity;
 use Cmendoza\ApiCdc\controllers\auth\AuthController as Login;
+use Cmendoza\ApiCdc\controllers\auth\UsuarioController as Usuario;
 
 $router = new \Bramus\Router\Router();
 
@@ -119,6 +120,17 @@ $router->post('/login', function () {
 $router->post('/logout', function () {
     $login = new Login();
     echo json_encode($login->logout($_POST));
+});
+
+$router->mount('/usuario', function () use ($router) {
+    $router->post('/', function () {
+        //$postdata = file_get_contents("php://input");
+        //$obj = json_decode($postdata);
+        //error_log(json_encode($obj));
+        $usuario = new Usuario();
+        //echo json_encode($_REQUEST);
+        echo json_encode($usuario->update($_POST));
+    });
 });
 
 $router->run();

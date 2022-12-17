@@ -14,12 +14,14 @@ class AuthController //extends Auth
 
     public function existUser($fields)
     {
-        $validate  = new Validation();
+        $validate = new Validation();
 
-        $error = $validate->make(array(
+        $validate->make(array(
             'email' => "email",
-            'clave' =>  "size:10",
+            'clave' =>  "size:10|number",
         ), $fields);
+
+        $error = $validate->getErrors();
 
         if (count($error) > 0) {
             return ["error" => $error];
@@ -47,8 +49,8 @@ class AuthController //extends Auth
             }
 
             $usuario = $modelUser->getUser();
-            error_log($result[0]['status']);
-            error_log(json_encode($result));
+            //error_log($result[0]['status']);
+            //error_log(json_encode($result));
             return ['info' => $result, 'usuario' => $usuario, 'token' => $token, 'status' => $result[0]['status']];
         }
 

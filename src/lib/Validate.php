@@ -15,7 +15,7 @@ class Validate
 
     public function number($param)
     {
-        $reg = "/([0-9])\w+/";
+        $reg = "/^\\d+$/";
         return preg_match($reg, $param);
     }
 
@@ -32,7 +32,7 @@ class Validate
 
     public function string($param)
     {
-        $reg =  "/^[a-zñA-ZÑ]+[áéíóú]*$/";
+        $reg = "/^[\pL\s]+$/u";
         return preg_match($reg, $param);
     }
 
@@ -50,4 +50,21 @@ class Validate
     {
         return mb_strlen($param) >= $length;;
     }
+
+    public function curp($param)
+    {
+        $reg = "/^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/";
+        return preg_match($reg, $param);
+    }
+
+    public function rfc($param)
+    {
+        $reg = "/^[ÑA-Z]{3,4}[0-9]{6}[0-9A-Z]{3}$/";
+        return preg_match($reg, $param);
+    }
 }
+
+//$obj = new Validate();
+//echo ($obj->curp("MESA090814MMCNLNA1") . PHP_EOL);
+//echo ($obj->phone("5513489184") . PHP_EOL);
+//echo ($obj->string("estó  asdadsad adasda ") . PHP_EOL);

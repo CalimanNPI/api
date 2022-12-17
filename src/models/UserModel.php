@@ -74,4 +74,35 @@ class UserModel
             return  $e->getMessage();
         }
     }
+
+    public function updateUser($fields)
+    {
+        try {
+
+            $sql = '';
+            $argc = [];
+            if ($this->tipo == "U") {
+                $sql = 'UPDATE dbo.usuario SET tel_cel=?, mail=?, curp=? WHERE clave=?';
+                $argc = [$fields['phone'], strtolower($fields['email']), strtoupper($fields['curp']), $fields['clave']];
+            } else if ($this->tipo == "X") {
+                $sql = 'UPDATE dbo.usuariointer SET t_cel=?, correo=?, curp=?, rfc=? WHERE clave=?';
+                $argc = [$fields['phone'], strtolower($fields['email']), strtoupper($fields['curp']), strtoupper($fields['rfc']), $fields['clave']];
+            } else if ($this->tipo == "A") {
+                $sql = 'UPDATE dbo.alto_ren SET curp=? WHERE clave=?';
+                $argc = [strtoupper($fields['curp']), $fields['clave']];
+            } else {
+                return 'Tipo de usuario incorrecto';
+            }
+
+            error_log(json_encode($argc));
+            //$sql = 'UPDATE dbo.usuario SET tel_cel=?, mail=?, curp=?, rfc=? WHERE clave=?';
+            $stm = $this->db->connect()->prepare($sql);
+            $stm->execute($argc);
+            //$stm->setFetchMode(PDO::FETCH_ASSOC);
+            //$result = $stm->fetchAll();
+           //return empty($result) ?  "No se encontro ningún registro" : $result;
+        } catch (PDOException $e) {
+            return  $e->getMessage();
+        }
+    }
 }
