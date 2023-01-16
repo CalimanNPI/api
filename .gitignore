@@ -1,6 +1,6 @@
 vendor/
-*.log
 public/
 test/
 *.config
 *.env
+*php-error.log
