@@ -38,7 +38,7 @@ $router->post('/sendEmail', function () {
 $router->get('/sendNotifications', function () {
     echo json_encode(Notify::sendN());
 });
-
+ 
 /**Notificaciones */
 $router->mount('/notify', function () use ($router) {
 
