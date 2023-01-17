@@ -2,10 +2,10 @@
 
 namespace Cmendoza\ApiCdc\controllers\auth;
 
-use Cmendoza\ApiCdc\middlewares\Validation;
+use Cmendoza\ApiCdc\lib\Validation;
 use Cmendoza\ApiCdc\lib\JWT;
-use Cmendoza\ApiCdc\models\LoginModel;
-use Cmendoza\ApiCdc\models\UserModel;
+use Cmendoza\ApiCdc\models\ModelLogin;
+use Cmendoza\ApiCdc\models\ModelUser;
 use Cmendoza\ApiCdc\models\ModelMongoAll as Mongo;
 //use Cmendoza\ApiCdc\middlewares\Auth;
 
@@ -27,8 +27,8 @@ class AuthController //extends Auth
             return ["error" => $error];
         }
 
-        $modelLogin = new LoginModel();
-        $modelUser = new UserModel();
+        $modelLogin = new ModelLogin();
+        $modelUser = new ModelUser();
 
         $token = JWT::createJWT($fields['clave']);
 

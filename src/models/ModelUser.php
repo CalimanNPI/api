@@ -2,19 +2,20 @@
 
 namespace Cmendoza\ApiCdc\models;
 
-use Cmendoza\ApiCdc\database\DataBaseSQL;
 use PDO;
 use PDOException;
 
-class UserModel
+use Cmendoza\ApiCdc\lib\Model;
+
+class ModelUser extends Model
 {
     public string $tipo;
     public string $clave;
-    private DataBaseSQL $db;
 
     function  __construct()
     {
-        $this->db = new DataBaseSQL('DB_NAME');
+        parent::__construct();
+        $this->connectionDBSQL("DB_NAME");
     }
 
     public function getTipo()
@@ -94,13 +95,13 @@ class UserModel
                 return 'Tipo de usuario incorrecto';
             }
 
-            error_log(json_encode($argc));
+            //error_log(json_encode($argc));
             //$sql = 'UPDATE dbo.usuario SET tel_cel=?, mail=?, curp=?, rfc=? WHERE clave=?';
             $stm = $this->db->connect()->prepare($sql);
             $stm->execute($argc);
             //$stm->setFetchMode(PDO::FETCH_ASSOC);
             //$result = $stm->fetchAll();
-           //return empty($result) ?  "No se encontro ningún registro" : $result;
+            //return empty($result) ?  "No se encontro ningún registro" : $result;
         } catch (PDOException $e) {
             return  $e->getMessage();
         }

@@ -5,19 +5,16 @@ namespace Cmendoza\ApiCdc\models;
 use Exception;
 use ExpoSDK\Expo;
 use ExpoSDK\ExpoMessage;
-use Cmendoza\ApiCdc\database\DataBaseNoSQL;
 use Cmendoza\ApiCdc\controllers\TokenController as TokensConn;
+use Cmendoza\ApiCdc\lib\Model;
 
-class ModelSendNotifications
+class ModelSendNotifications extends Model
 {
-
-    private $collection;
-    private $db;
 
     public function __construct($cool)
     {
-        $this->db = new DataBaseNoSQL();
-        $this->collection = $this->db->connect()->notificacion->$cool;
+        parent::__construct();
+        $this->connectionDBMongo($cool);
     }
 
     public function sendNotify()

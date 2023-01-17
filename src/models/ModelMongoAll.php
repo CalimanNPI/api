@@ -3,9 +3,9 @@
 namespace Cmendoza\ApiCdc\models;
 
 use Exception;
-use Cmendoza\ApiCdc\database\DataBaseNoSQL;
+use Cmendoza\ApiCdc\lib\Model;
 
-class ModelMongoAll
+class ModelMongoAll extends Model
 {
     protected string $id;
     protected string $title;
@@ -13,15 +13,10 @@ class ModelMongoAll
     protected string $id_publi;
     protected $send;
 
-    private $call;
-
-    private $collection;
-    private $db;
-
     public function __construct($cool)
     {
-        $this->db = new DataBaseNoSQL();
-        $this->collection = $this->db->connect()->notificacion->$cool;
+        parent::__construct();
+        $this->connectionDBMongo($cool);
     }
 
     public function get($params)

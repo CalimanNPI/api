@@ -2,11 +2,11 @@
 
 namespace Cmendoza\ApiCdc\models;
 
-use Cmendoza\ApiCdc\database\DataBaseSQL;
+use Cmendoza\ApiCdc\lib\Model;
 use PDO;
 use PDOException;
 
-class ModelActivity
+class ModelActivity extends Model
 {
     protected string $id;
     protected string $actividad;
@@ -22,11 +22,11 @@ class ModelActivity
     protected string $pdia;
     protected string $fecha;
     protected string $ubicacion;
-    private DataBaseSQL $db;
 
     public function __construct()
     {
-        $this->db = new DataBaseSQL("DB_NAME3");
+        parent::__construct();
+        $this->connectionDBSQL("DB_NAME3");
     }
 
     public function getAll()

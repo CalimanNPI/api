@@ -2,23 +2,22 @@
 
 namespace Cmendoza\ApiCdc\models;
 
-use Cmendoza\ApiCdc\database\DataBaseSQL;
+use Cmendoza\ApiCdc\lib\Model;
 use PDO;
 use PDOException;
 
-class LoginModel
+class ModelLogin extends Model
 {
     protected string $clave;
     protected string $mail;
     protected string $status;
-    private DataBaseSQL $db;
-
     protected string $sql;
     protected array $argc;
 
     public function __construct()
     {
-        $this->db = new DataBaseSQL("DB_NAME2");
+        parent::__construct();
+        $this->connectionDBSQL("DB_NAME2");
     }
 
     public function get($param)

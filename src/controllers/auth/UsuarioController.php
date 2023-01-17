@@ -2,8 +2,8 @@
 
 namespace Cmendoza\ApiCdc\controllers\auth;
 
-use Cmendoza\ApiCdc\models\UserModel;
-use Cmendoza\ApiCdc\middlewares\Validation;
+use Cmendoza\ApiCdc\models\ModelUser;
+use Cmendoza\ApiCdc\lib\Validation;
 
 class UsuarioController
 {
@@ -54,7 +54,7 @@ class UsuarioController
          return ['error' => $error];
       }
 
-      $usuario = new UserModel();
+      $usuario = new ModelUser();
       $usuario->setTipo($fields['tipo']);
 
       $usuario->updateUser($fields);

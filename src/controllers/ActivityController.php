@@ -3,9 +3,8 @@
 
 namespace Cmendoza\ApiCdc\controllers;
 
-use Cmendoza\ApiCdc\models\ModelMongoAll as activity;
 use Cmendoza\ApiCdc\models\ModelActivity;
-use Cmendoza\ApiCdc\models\UserModel;
+use Cmendoza\ApiCdc\models\ModelUser;
 
 class ActivityController
 {
@@ -33,7 +32,7 @@ class ActivityController
 
     public function getProfe($fields)
     {
-        $user = new UserModel();
+        $user = new ModelUser();
         $user->setTipo('U');
         $user->setClave($fields['clave']);
         return $user->getUserNom();

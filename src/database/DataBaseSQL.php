@@ -13,7 +13,6 @@ class DataBaseSQL
     private $user;
     private $password;
 
-
     public function __construct($_db)
     {
         $this->host = $_ENV['DB_HOST'];
@@ -32,24 +31,5 @@ class DataBaseSQL
             error_log($exception->getMessage());
             exit($exception->getMessage());
         }
-    }
-
-    //Obtener parametros para updates
-    public function getParams($input)
-    {
-        $filterParams = [];
-        foreach ($input as $param => $value) {
-            $filterParams[] = "$param=:$param";
-        }
-        return implode(", ", $filterParams);
-    }
-
-    //Asociar todos los parametros a un sql
-    public function bindAllValues($statement, $params)
-    {
-        foreach ($params as $param => $value) {
-            $statement->bindValue(':' . $param, $value);
-        }
-        return $statement;
     }
 }
