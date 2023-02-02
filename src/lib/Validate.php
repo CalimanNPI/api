@@ -63,8 +63,3 @@ class Validate
         return preg_match($reg, $param);
     }
 }
-
-//$obj = new Validate();
-//echo ($obj->curp("MESA090814MMCNLNA1") . PHP_EOL);
-//echo ($obj->phone("5513489184") . PHP_EOL);
-//echo ($obj->string("estó  asdadsad adasda ") . PHP_EOL);

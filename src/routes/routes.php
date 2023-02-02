@@ -13,17 +13,20 @@ $router = new \Bramus\Router\Router();
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../../');
 $dotenv->load();
 
+$router->setNamespace('\Cmendoza\ApiCdc\controllers');
+
 /**token */
 $router->post('/token', function () {
     $notify = TokenConn::storeToken($_POST);
+    //error_log($_POST);
     echo json_encode($notify);
 });
 
 /**email */
 $router->post('/sendEmail', function () {
-    error_log(json_encode($_POST));
+    //error_log(json_encode($_POST));
     $status = SendMail::storeMessage($_POST);
-    error_log(json_encode($status));
+    //error_log(json_encode($status));
 
     if ($status) {
         # code...
@@ -38,7 +41,7 @@ $router->post('/sendEmail', function () {
 $router->get('/sendNotifications', function () {
     echo json_encode(Notify::sendN());
 });
- 
+
 /**Notificaciones */
 $router->mount('/notify', function () use ($router) {
 
@@ -62,7 +65,7 @@ $router->mount('/notify', function () use ($router) {
     $router->put('/{id}', function ($id) {
         $postdata = file_get_contents("php://input");
         $obj = json_decode($postdata);
-        error_log(json_encode($obj));
+        //error_log(json_encode($obj));
         echo json_encode(Notify::update($id, $obj));
     });
 
@@ -114,6 +117,8 @@ $router->mount('/acti', function () use ($router) {
 /**auth */
 $router->post('/login', function () {
     $login = new Login();
+    //error_log(json_encode($_POST));
+    //exit;
     echo json_encode($login->existUser($_POST));
 });
 
@@ -130,6 +135,11 @@ $router->mount('/usuario', function () use ($router) {
         $usuario = new Usuario();
         //echo json_encode($_REQUEST);
         echo json_encode($usuario->update($_POST));
+    });
+
+    $router->get('/credential/{id}/{tipo}', function ($id, $tipo) {
+        $usuario = new Usuario();
+        echo json_encode($usuario->getCredential($id, $tipo));
     });
 });
 

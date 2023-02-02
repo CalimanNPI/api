@@ -34,7 +34,7 @@ class ModelActivity extends Model
         try {
             $sql = "SELECT actividad, status, numero, ubicacion, niveles, edad, precio, dia, 
                            fecha, dias, horini, horfin, cantidad, profesor, prof_num 
-                    FROM dbo.actividades WHERE baja!='B' ORDER BY actividad ASC ";
+                    FROM dbo.actividades WHERE  baja!='B' AND espe<>'E' ORDER BY actividad ASC ";
             $stm = $this->db->connect()->prepare($sql);
             $stm->execute();
             $stm->setFetchMode(PDO::FETCH_ASSOC);
@@ -49,7 +49,7 @@ class ModelActivity extends Model
         try {
             $sql = "SELECT actividad, status, numero, ubicacion, niveles, edad, precio, dia, 
                            fecha, dias, horini, horfin, cantidad, profesor, prof_num, descripActi, clave  
-                    FROM dbo.actividades WHERE numero=? AND baja!='B' ";
+                    FROM dbo.actividades WHERE numero=? AND baja!='B' AND espe<>'E' ";
             $stm = $this->db->connect()->prepare($sql);
             $stm->execute([$numero]);
             $stm->setFetchMode(PDO::FETCH_ASSOC);
@@ -65,7 +65,7 @@ class ModelActivity extends Model
             $like =  "%$search%";
             $sql = "SELECT actividad, status, numero, ubicacion, niveles, edad, precio, dia, 
                            fecha, dias, horini, horfin, cantidad, profesor, prof_num  
-                    FROM dbo.actividades WHERE actividad LIKE ? OR ubicacion LIKE ? OR niveles LIKE ? OR edad LIKE ?";
+                    FROM dbo.actividades WHERE actividad LIKE ? OR ubicacion LIKE ? OR niveles LIKE ? OR edad LIKE ? AND baja!='B' AND espe<>'E'";
             $stm = $this->db->connect()->prepare($sql);
             $stm->execute([$like, $like, $like, $like]);
             $stm->setFetchMode(PDO::FETCH_ASSOC);

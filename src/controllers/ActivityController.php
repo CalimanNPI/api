@@ -15,12 +15,12 @@ class ActivityController
         $this->obj = new ModelActivity();;
     }
 
-    public  function index()
+    public function index()
     {
         return $this->obj->getAll();
     }
 
-    public  function show($numero)
+    public function show($numero)
     {
         return $this->obj->getActi($numero);
     }

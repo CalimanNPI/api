@@ -106,4 +106,19 @@ class ModelUser extends Model
             return  $e->getMessage();
         }
     }
+
+
+    public function getCredential()
+    {
+        try {
+            $sql = 'SELECT * FROM dbo.CredDigital WHERE clave=? AND tipousu=?';
+            $stm = $this->db->connect()->prepare($sql);
+            $stm->execute([$this->clave, $this->tipo]);
+            $stm->setFetchMode(PDO::FETCH_ASSOC);
+            $result = $stm->fetchAll();
+            return empty($result) ?  "No se encontro ningún registro" : $result;
+        } catch (PDOException $e) {
+            return  $e->getMessage();
+        }
+    }
 }

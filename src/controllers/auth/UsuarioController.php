@@ -7,6 +7,14 @@ use Cmendoza\ApiCdc\lib\Validation;
 
 class UsuarioController
 {
+
+   public $usuario;
+
+   function __construct()
+   {
+      $this->usuario = new ModelUser();
+   }
+
    public function update($fields)
    {
       $validate  = new Validation();
@@ -54,11 +62,16 @@ class UsuarioController
          return ['error' => $error];
       }
 
-      $usuario = new ModelUser();
-      $usuario->setTipo($fields['tipo']);
-
-      $usuario->updateUser($fields);
+      $this->usuario->setTipo($fields['tipo']);
+      $this->usuario->updateUser($fields);
 
       return ["message" => "Se actualizo la información correactamente"];
+   }
+
+   public function getCredential($id, $tipo)
+   {
+      $this->usuario->setClave($id);
+      $this->usuario->setTipo($tipo);
+      return $this->usuario->getCredential();
    }
 }

@@ -24,7 +24,7 @@ class PublicidadController
         $id = uniqid();
         $data = ['_id' => $id, 'title' => $fields['title'], 
         'body' => $fields['body'], 'img_url' => $fields['uriImg'], 
-        'description' => $fields['description'], 'date' => $fields['date']];
+        'description' => $fields['description'], 'date' => date("Y-m-d H:i:s")];
         $notify = new publicity('publicity');
         $result = $notify->save($data);
         return $result;

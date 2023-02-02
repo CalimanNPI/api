@@ -46,11 +46,10 @@ class AuthController //extends Auth
             $jwtu = new Mongo('jwtu');
             if (!$jwtu->get(['token' => $token])) {
                 $resultM = $jwtu->save($data);
+                error_log(json_encode($resultM));
             }
 
             $usuario = $modelUser->getUser();
-            //error_log($result[0]['status']);
-            //error_log(json_encode($result));
             return ['info' => $result, 'usuario' => $usuario, 'token' => $token, 'status' => $result[0]['status']];
         }
 

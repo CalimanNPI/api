@@ -1,3 +1,13 @@
-[16-Jan-2023 22:33:20 UTC] No suitable servers found (`serverSelectionTryOnce` set): [connection refused calling hello on 'localhost:27017']
-[17-Jan-2023 01:21:29 UTC] No suitable servers found (`serverSelectionTryOnce` set): [connection refused calling hello on 'localhost:27017']
-[17-Jan-2023 01:27:55 UTC] PHP Fatal error:  Access level to Cmendoza\ApiCdc\models\ModelActivity::$db must be protected (as in class Cmendoza\ApiCdc\lib\Model) or weaker in C:\inetpub\wwwroot\api\src\models\ModelActivity.php on line 10
+[01-Feb-2023 23:50:18 UTC] PHP Fatal error:  Uncaught Error: Typed property Cmendoza\ApiCdc\models\ModelUser::$clave must not be accessed before initialization in C:\inetpub\wwwroot\api\src\models\ModelUser.php:116
+Stack trace:
+#0 C:\inetpub\wwwroot\api\src\controllers\auth\UsuarioController.php(73): Cmendoza\ApiCdc\models\ModelUser->getCredential()
+#1 C:\inetpub\wwwroot\api\src\routes\routes.php(143): Cmendoza\ApiCdc\controllers\auth\UsuarioController->getCredential()
+#2 [internal function]: {closure}()
+#3 C:\inetpub\wwwroot\api\vendor\bramus\router\src\Bramus\Router\Router.php(458): call_user_func_array()
+#4 C:\inetpub\wwwroot\api\vendor\bramus\router\src\Bramus\Router\Router.php(440): Bramus\Router\Router->invoke()
+#5 C:\inetpub\wwwroot\api\vendor\bramus\router\src\Bramus\Router\Router.php(287): Bramus\Router\Router->handle()
+#6 C:\inetpub\wwwroot\api\src\routes\routes.php(147): Bramus\Router\Router->run()
+#7 C:\inetpub\wwwroot\api\index.php(16): require('...')
+#8 {main}
+  thrown in C:\inetpub\wwwroot\api\src\models\ModelUser.php on line 116
+[01-Feb-2023 23:51:38 UTC] "No se encontro ning\u00fan registro"
